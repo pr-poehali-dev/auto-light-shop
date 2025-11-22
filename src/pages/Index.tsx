@@ -13,8 +13,8 @@ const Index = () => {
     {
       icon: "Lightbulb",
       title: "Установка автосвета",
-      description: "Профессиональная установка LED, ксенон, биксенон любой сложности",
-      price: "от 2 500 ₽"
+      description: "Профессиональная установка LED, биксенон любой сложности",
+      price: "от 10 000 ₽"
     },
     {
       icon: "Sun",
@@ -26,7 +26,7 @@ const Index = () => {
       icon: "Sparkles",
       title: "Полировка фар и стёкол",
       description: "Восстановление прозрачности, защита от помутнения",
-      price: "от 1 500 ₽"
+      price: "от 5 000 ₽"
     },
     {
       icon: "Zap",
@@ -76,16 +76,42 @@ const Index = () => {
   ];
 
   const priceList = [
-    { service: "LED лампы установка (комплект)", price: "2 500 ₽" },
-    { service: "Ксенон установка (комплект)", price: "4 500 ₽" },
-    { service: "Биксенон установка (комплект)", price: "6 000 ₽" },
+    { service: "LED лампы установка (комплект)", price: "10 000 ₽" },
+    { service: "Биксенон установка (комплект)", price: "12 000 ₽" },
     { service: "Тонировка передних стёкол", price: "3 000 ₽" },
     { service: "Тонировка задних стёкол", price: "2 500 ₽" },
     { service: "Полная тонировка авто", price: "5 000 ₽" },
-    { service: "Полировка фар (пара)", price: "1 500 ₽" },
-    { service: "Полировка лобового стекла", price: "2 000 ₽" },
+    { service: "Полировка фар (пара)", price: "5 000 ₽" },
+    { service: "Полировка лобового стекла", price: "6 000 ₽" },
     { service: "Диагностика электрики", price: "1 000 ₽" },
     { service: "Ремонт проводки (1 час работы)", price: "1 500 ₽" }
+  ];
+
+  const products = [
+    {
+      name: "Bi-LED модули Aozoom",
+      description: "Премиальные би-лед модули с ярким светом и идеальной СТГ",
+      price: "от 15 000 ₽",
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+    },
+    {
+      name: "Bi-LED модули Creeline",
+      description: "Качественные модули с долгим сроком службы",
+      price: "от 12 000 ₽",
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+    },
+    {
+      name: "LED лампы H4/H7",
+      description: "Яркие LED лампы для ближнего и дальнего света",
+      price: "от 3 500 ₽",
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+    },
+    {
+      name: "LED лампы HB3/HB4",
+      description: "Мощные LED лампы для американских и японских авто",
+      price: "от 3 500 ₽",
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+    }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -105,6 +131,7 @@ const Index = () => {
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
+            <a href="#catalog" className="hover:text-primary transition-colors">Каталог</a>
             <a href="#portfolio" className="hover:text-primary transition-colors">Портфолио</a>
             <a href="#price" className="hover:text-primary transition-colors">Прайс</a>
             <a href="#reviews" className="hover:text-primary transition-colors">Отзывы</a>
@@ -164,6 +191,41 @@ const Index = () => {
                 <CardContent>
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-primary">{service.price}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="catalog" className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-4">Каталог товаров</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            Премиальные би-LED модули и лампы в наличии
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((product, index) => (
+              <Card key={index} className="overflow-hidden hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="aspect-square overflow-hidden bg-muted">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-lg">{product.name}</CardTitle>
+                  <CardDescription className="text-sm">{product.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-primary">{product.price}</span>
+                    <Button size="sm">
+                      <Icon name="ShoppingCart" size={16} className="mr-1" />
+                      Купить
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
