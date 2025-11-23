@@ -92,25 +92,41 @@ const Index = () => {
       name: "Bi-LED модули Aozoom",
       description: "Премиальные би-лед модули с ярким светом и идеальной СТГ",
       price: "от 15 000 ₽",
-      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg",
+      reviews: [
+        { author: "Максим Р.", rating: 5, text: "Поставил Aozoom на Камри — свет как у премиум авто! Очень доволен." },
+        { author: "Игорь В.", rating: 5, text: "Яркость супер, СТГ ровная. Рекомендую однозначно." }
+      ]
     },
     {
       name: "Bi-LED модули Creeline",
       description: "Качественные модули с долгим сроком службы",
       price: "от 12 000 ₽",
-      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg",
+      reviews: [
+        { author: "Андрей К.", rating: 5, text: "За свои деньги отличный вариант. Светят ярко, работают без нареканий." },
+        { author: "Олег М.", rating: 4, text: "Хорошие модули, яркость чуть меньше чем у Aozoom, но цена адекватная." }
+      ]
     },
     {
       name: "LED лампы H4/H7",
       description: "Яркие LED лампы для ближнего и дальнего света",
       price: "от 3 500 ₽",
-      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg",
+      reviews: [
+        { author: "Денис Л.", rating: 5, text: "Заменил галоген на эти LED — небо и земля! Видимость в разы лучше." },
+        { author: "Сергей П.", rating: 5, text: "Отличные лампы за свои деньги. Яркие, не слепят встречных." }
+      ]
     },
     {
       name: "LED лампы HB3/HB4",
       description: "Мощные LED лампы для американских и японских авто",
       price: "от 3 500 ₽",
-      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg"
+      image: "https://cdn.poehali.dev/projects/d15146d3-c9d6-41b6-8c9e-3f02151381f8/files/bd1b2545-fdc3-433a-9852-3b7e85f37e19.jpg",
+      reviews: [
+        { author: "Виктор Ж.", rating: 5, text: "Поставил на Лексус — идеально подошли. Яркость отличная." },
+        { author: "Артём Н.", rating: 5, text: "Качество на высоте, светят мощно. Рекомендую для японцев." }
+      ]
     }
   ];
 
@@ -220,12 +236,31 @@ const Index = () => {
                   <CardDescription className="text-sm">{product.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-4">
                     <span className="text-2xl font-bold text-primary">{product.price}</span>
                     <Button size="sm">
                       <Icon name="ShoppingCart" size={16} className="mr-1" />
                       Купить
                     </Button>
+                  </div>
+                  <div className="border-t pt-4 space-y-3">
+                    <div className="flex items-center gap-1 mb-2">
+                      <Icon name="MessageSquare" size={14} className="text-muted-foreground" />
+                      <span className="text-xs font-semibold text-muted-foreground">Отзывы покупателей</span>
+                    </div>
+                    {product.reviews.map((review, reviewIndex) => (
+                      <div key={reviewIndex} className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-medium">{review.author}</span>
+                          <div className="flex">
+                            {Array.from({ length: review.rating }).map((_, i) => (
+                              <Icon key={i} name="Star" size={10} className="text-yellow-500 fill-yellow-500" />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{review.text}</p>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
